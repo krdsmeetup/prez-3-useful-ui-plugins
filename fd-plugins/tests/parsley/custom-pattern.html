@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Parsley Custom Pattern Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <link rel='stylesheet prefetch' href='assets/bootstrap.css'>
+    <link rel='stylesheet prefetch' href='assets/parsley.css'>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shCore.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shAutoloader.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushXml.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushCss.js"></script>
+        <link type="text/css" rel="stylesheet" href="../../js/syntaxhighlighter/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <style class="cp-pen-styles">
+        html,
+        body {
+            background: #0abbff;
+            font-size: 20px;
+        }
+        h4 {
+            margin-bottom: 10px;
+        }
+        .container {
+            max-width: 720px;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            padding: 20px 30px;
+            margin-bottom: 20px;
+        }
+        input.parsley-success, select.parsley-success, textarea.parsley-success {
+            color: #247925;
+            background-color: #dcffcd;
+            border: 1px solid #37ad38;
+        }
+        input.parsley-error, select.parsley-error, textarea.parsley-error {
+            color: #ff2521;
+            background-color: #ffc6c6;
+            border: 1px solid #ff7270;
+        }
+        .parsley-errors-list {
+            color: #dc0f0f;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="text-center">ParsleyJS - Custom Pattern</h1>
+
+    <div class="container">
+
+        <div class="bs-callout bs-callout-warning hidden">
+            <h4>Oh snap!</h4>
+            <p>This form seems to be invalid :(</p>
+        </div>
+        <div class="bs-callout bs-callout-info hidden">
+            <h4>Yay!</h4>
+            <p>Everything seems to be ok :)</p>
+        </div>
+
+        <form id="demo-form" data-parsley-validate="">
+
+            <div class="form-group">
+                <label for="email">Create Password * :</label>
+                <input type="text" class="form-control fc-password" name="password1" id="password1"
+                        data-parsley-trigger="input focusout"
+                        data-parsley-validation-threshold="7"
+                        data-parsley-minlength="8"
+                        data-parsley-pattern="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                        data-parsley-pattern-message="Password must contain 8 or more letters with atleast 1 caps letter, 1 small letter, 1 number and 1 special character"
+                        required="">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Enter Capcha: <span id="left_num"></span> * <span id="right_num"></span></label>
+                <input type="text" class="form-control fc-password" name="password1" id="password1"
+                        data-parsley-trigger="input focusout"
+                        data-parsley-captcha="plus"
+                        required="">
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-success btn-lg" value="Submit">
+            </div>
+
+            <p><small>* Please, note that this demo form is not a perfect example of UX-awareness. The aim here is to show a quick overview of parsley-API and Parsley customizable behavior.</small></p>
+
+        </form>
+
+    </div>
+    <a class="windowLink" data-toggle="modal" data-target="#code_window">Code</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="code_window" tabindex="-1" role="dialog" aria-labelledby="code_window">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Code Window</h4>
+                </div>
+                <div class="modal-body editor">
+<pre class="brush: js; highlight: [13,22]">
+<form id="demo-form" data-parsley-validate="">
+
+    <div class="form-group">
+        <label for="email">Create Password * :</label>
+        <input type="text" class="form-control" name="password1" id="password1"
+        data-parsley-trigger="input focusout"
+        data-parsley-validation-threshold="7"
+        data-parsley-minlength="8"
+        data-parsley-pattern
+        ="(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+        data-parsley-pattern-message="Password Strength Message"
+        required="">
+    </div>
+
+    <div class="form-group">
+        <label for="email">
+            Enter Capcha:
+            <span id="left_num"></span> * <span id="right_num"></span>
+        </label>
+        <input type="text" class="form-control" name="password1" id="password1"
+                data-parsley-trigger="input focusout"
+                data-parsley-captcha="plus"
+                required="">
+    </div>
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-success btn-lg" value="Submit">
+    </div>
+
+</form>
+<script>
+window.Parsley.addValidator('captcha', {
+    requirementType: 'string',
+    validateNumber: function(value, requirement) {
+        var result = false;
+
+        if(requirement == 'plus')
+            result = (value == parseInt( $('#left_num').html() ) + parseInt( $('#right_num').html() ))
+        else if(requirement == 'minus')
+            result = (value == parseInt( $('#left_num').html() ) - parseInt( $('#right_num').html() ))
+        else if(requirement == 'multiply')
+            result = (value == parseInt( $('#left_num').html() ) * parseInt( $('#right_num').html() ))
+        else if(requirement == 'divide')
+            result = (value == parseInt( $('#left_num').html() ) / parseInt( $('#right_num').html() ))
+
+        return result;
+    },
+    messages: {
+        en: 'Kindly Enter Correct Value',
+        fr: 'Kindly Enter Correct Value'
+    }
+});
+</script>
+</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='assets/jquery-2.1.3.js'></script>
+    <script src='assets/bootstrap.js'></script>
+    <script src='assets/parsley.js'></script>
+    <script>
+        $(function() {
+            $('#demo-form').parsley().on('form:validated', function(elem) {
+                var ok = $('.parsley-error').length === 0;
+                $('.bs-callout-warning').toggleClass('hidden', ok);
+            }).on('form:submit', function() {
+                $('.bs-callout-info').toggleClass('hidden');
+                $('#demo-form').reset();
+                return false;
+            });
+
+            $('#left_num').html( Math.round( (Math.random() + 20) * Math.random() ) );
+            $('#right_num').html( Math.round( (Math.random() + 10) * Math.random() ) );
+        });
+
+        window.Parsley.addValidator('captcha', {
+            requirementType: 'string',
+            validateNumber: function(value, requirement) {
+                var result = false;
+
+                if(requirement == 'plus')
+                    result = (value == parseInt( $('#left_num').html() ) + parseInt( $('#right_num').html() ))
+                else if(requirement == 'minus')
+                    result = (value == parseInt( $('#left_num').html() ) - parseInt( $('#right_num').html() ))
+                else if(requirement == 'multiply')
+                    result = (value == parseInt( $('#left_num').html() ) * parseInt( $('#right_num').html() ))
+                else if(requirement == 'divide')
+                    result = (value == parseInt( $('#left_num').html() ) / parseInt( $('#right_num').html() ))
+
+                return result;
+            },
+            messages: {
+                en: 'Kindly Enter Correct Value',
+                fr: 'Kindly Enter Correct Value'
+            }
+        });
+
+    </script>
+</body>
+
+</html>

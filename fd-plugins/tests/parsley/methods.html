@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Parsley - JS Call</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <link rel='stylesheet prefetch' href='assets/bootstrap.css'>
+    <link rel='stylesheet prefetch' href='assets/parsley.css'>
+    <style class="cp-pen-styles">
+        html,
+        body {
+            background: #0abbff;
+        }
+        h4 {
+            margin-bottom: 10px;
+        }
+        .container {
+            max-width: 720px;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            padding: 3% 4%;
+            margin-bottom: 20px;
+        }
+        input.parsley-success, select.parsley-success, textarea.parsley-success {
+            color: #247925;
+            background-color: #dcffcd;
+            border: 1px solid #37ad38;
+        }
+        input.parsley-error, select.parsley-error, textarea.parsley-error {
+            color: #ff2521;
+            background-color: #ffc6c6;
+            border: 1px solid #ff7270;
+        }
+        .parsley-errors-list {
+            color: #dc0f0f;
+            line-height: 1.4;
+        }
+        .windowLink {
+            background: #000;
+            cursor: pointer;
+            color: #fff;
+            bottom: 0;
+            right: 10px;
+            padding: 10px;
+            display: inline-block;
+            position: fixed;
+            z-index: 2;
+        }
+        .windowLink:hover {
+            background: #222;
+            color: #ddd;
+            text-decoration: none;
+        }
+        .modal-footer {
+            margin-top: 0;
+        }
+        .editor {
+            background: #111;
+            border: 10px solid #333;
+            color: #fff;
+            padding: 0% 4% 4%;
+        }
+        .modal-dialog {
+            width: 720px;
+        }
+
+        /* To Hide Spin Button in Input[Type="number"] */
+        input[type='number'] {
+            -moz-appearance:textfield;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        @media only screen and (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            .windowLink {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="text-center">ParsleyJS - Simple Form Validation</h1>
+
+    <div class="container">
+
+        <div class="bs-callout bs-callout-warning hidden">
+            <h4>Oh snap!</h4>
+            <p>This form seems to be invalid :(</p>
+        </div>
+        <div class="bs-callout bs-callout-info hidden">
+            <h4>Yay!</h4>
+            <p>Everything seems to be ok :)</p>
+        </div>
+
+        <form id="demo-form">
+
+            <div class="form-group">
+                <label for="fullname">Full Name * :</label>
+                <input type="text" class="form-control" name="fullname" required="">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email * :</label>
+                <input type="email" class="form-control" id="email" name="email" required="">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone number * :</label>
+                <input type="number" class="form-control" name="phone" data-parsley-validation-threshold="8" data-parsley-minlength="7" required="">
+            </div>
+
+            <div class="form-group">
+                <label for="heard">Heard about us via *:</label>
+                <select id="heard" class="form-control" data-parsley-trigger="change" required="">
+                    <option value="">Choose..</option>
+                    <option value="press">Press</option>
+                    <option value="net">Internet</option>
+                    <option value="mouth">Word of mouth</option>
+                    <option value="other">Other..</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="fg_gender">
+                <label for="gender">Gender *:</label>
+                <div>
+                    <label>
+                        <input type="radio" name="gender" id="genderM" data-parsley-trigger="change" data-parsley-errors-container="#fg_gender" value="M" required=""> Male
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" id="genderF" data-parsley-trigger="change" data-parsley-errors-container="#fg_gender" value="F" required=""> Female
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" id="fg_domain">
+                <label for="gender">Domain *:</label>
+                <div>
+                    <label>
+                        <input type="checkbox" name="domain1" id="html" value="Html" required=""> Html
+                    </label>
+                    <label>
+                        <input type="checkbox" name="domain2" id="css" value="CSS" required=""> CSS
+                    </label>
+                    <label>
+                        <input type="checkbox" name="domain3" id="js" value="JS" required=""> JS
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message (20 chars min, 100 max) :</label>
+                <textarea id="message" class="form-control" name="message" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 character comment.." data-parsley-validation-threshold="10" required=""></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-success btn-lg" value="Submit">
+            </div>
+
+            <p><small>* Please, note that this demo form is not a perfect example of UX-awareness. The aim here is to show a quick overview of parsley-API and Parsley customizable behavior.</small></p>
+        </form>
+
+    </div>
+
+    <a class="windowLink" data-toggle="modal" data-target="#code_window">Code</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="code_window" tabindex="-1" role="dialog" aria-labelledby="code_window">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Code Window</h4>
+                </div>
+                <div class="modal-body editor">
+<xmp>
+<script>
+    $(function() {
+
+        $('#demo-form').parsley({
+            trigger: 'input focusout'
+        });
+
+        $('#email').parsley({
+            validationThreshold: "10"
+        });
+
+        $('#fg_gender input[type=radio]').parsley({
+            trigger: "change",
+            errorsContainer: "#fg_gender"
+        });
+
+        $('#fg_domain input[type=checkbox]').parsley({
+            trigger: "change",
+            multiple: "domain",
+            errorsContainer: "#fg_domain"
+        });
+
+        $('#demo-form').parsley().on('field:validated', function() {
+            var ok = $('.parsley-error').length === 0;
+            $('.bs-callout-warning').toggleClass('hidden', ok);
+        }).on('form:submit', function() {
+            $('.bs-callout-info').toggleClass('hidden');
+            $('#demo-form').reset();
+            return false;
+        });
+
+    });
+</script>
+</xmp>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='assets/jquery-2.1.3.js'></script>
+    <script src='assets/bootstrap.js'></script>
+    <script src='assets/parsley.js'></script>
+    <script>
+        $(function() {
+
+            $('#demo-form').parsley({
+                trigger: 'input focusout'
+            });
+
+            $('#email').parsley({
+                validationThreshold: "10"
+            });
+
+            $('#fg_gender input[type=radio]').parsley({
+                trigger: "change",
+                errorsContainer: "#fg_gender"
+            });
+
+            $('#fg_domain input[type=checkbox]').parsley({
+                trigger: "change",
+                multiple: "domain",
+                errorsContainer: "#fg_domain"
+            });
+
+            $('#demo-form').parsley().on('field:validated', function() {
+                var ok = $('.parsley-error').length === 0;
+                $('.bs-callout-warning').toggleClass('hidden', ok);
+            }).on('form:submit', function() {
+                $('.bs-callout-info').toggleClass('hidden');
+                $('#demo-form').reset();
+                return false;
+            });
+
+        });
+    </script>
+</body>
+
+</html>

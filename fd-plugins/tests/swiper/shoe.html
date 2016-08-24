@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Swiper Simple Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <script src="assets/jquery-2.1.3.js"></script>
+    <link rel="shortcut icon" href="assets/favicon.png">
+    <script src="assets/swiper.min.js"></script>
+    <link rel="stylesheet" href="assets/swiper.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel='stylesheet prefetch' href='assets/bootstrap.css'>
+    <script src='assets/bootstrap.js'></script>
+
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shCore.js"></script>
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shAutoloader.js"></script>
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushXml.js"></script>
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushCss.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../js/syntaxhighlighter/shCoreDefault.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+    <!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+        text-align: center;
+    }
+    body {
+        background: #eee;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-main {
+        background: #283548; /* Old browsers */
+        background: -moz-linear-gradient(top, #283548 0%, #182432 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, #283548 0%,#182432 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #283548 0%,#182432 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        color: #c5dff9;
+        height: 100vh;
+        position: relative;
+        max-width: 375px;
+        max-height: 666px;
+        margin: 0 auto;
+        min-height: 450px;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    .header {
+        margin: 0;
+    }
+    .header img {
+        width: 100%;
+    }
+    .swiper-container {
+        width: 100%;
+    }
+    .gallery-top {
+        height: 66%;
+        overflow: visible;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+    }
+    .gallery-top .swiper-slide {
+        width: 70%;
+        height: 100%;
+        background-color: transparent;
+        transition: all 0.3s;
+    }
+    .swiper-slide.swiper-slide-active {
+        z-index: 2;
+    }
+    .gallery-top .swiper-slide {
+        background-size: cover;
+        background-position: center;
+        -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.4);
+        box-shadow: 0 0 12px rgba(0,0,0,0.4);
+        overflow: hidden;
+    }
+    .gallery-top .swiper-slide img {
+        width: 96%;
+        margin-left: -18%;
+        position: relative;
+    }
+    .gallery-top .swiper-slide h3 {
+        font-size: 20px;
+        position: relative;
+        margin: 13% 0 3% 9%;
+        width: 80%;
+        color: rgba(0,0,0,0.8);
+    }
+    .gallery-top .swiper-slide h4 {
+        font-size: 240px;
+        line-height: 1;
+        letter-spacing: -20px;
+        margin: 0;
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+        color: rgba(0,0,0,0.5);
+    }
+    .gallery-text .swiper-slide {
+        width: 24%;
+        padding: 5% 0 6%;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 16px;
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+    .gallery-text .swiper-slide.swiper-slide-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .swiper-pagination.swiper-pagination-fraction {
+        color: #98b7da;
+        bottom: -60px;
+        font-size: 20px;
+    }
+    .swiper-pagination.swiper-pagination-fraction .swiper-pagination-current {
+        font-size: 30px;
+        color: #cadaec;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="swiper-main">
+        <figure class="header">
+            <img src="assets/img/exp/mobile-header.jpg" alt="" />
+        </figure>
+
+        <!-- Swiper -->
+        <div class="swiper-container gallery-text">
+
+            <!-- Swiper slides -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">Running</div>
+                <div class="swiper-slide">Soccer</div>
+                <div class="swiper-slide">Tennis</div>
+                <div class="swiper-slide">Fashion</div>
+                <div class="swiper-slide">Cricket</div>
+                <div class="swiper-slide">Lifestyle</div>
+            </div>
+
+        </div>
+
+
+        <!-- Swiper -->
+        <div class="swiper-container gallery-top">
+
+            <!-- Swiper slides -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/bg-y.jpg)">
+                    <h4 data-swiper-parallax="-30%">47</h4>
+                    <h3 data-swiper-parallax="-15%">AIR MAX 2015</h3>
+                    <img src="assets/img/exp/shoe-running.png" alt="" data-swiper-parallax="-50%" />
+                </div>
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/bg-2.jpg)">
+                    <h4 data-swiper-parallax="-30%">60</h4>
+                    <h3 data-swiper-parallax="-15%">AIR MIN 2016</h3>
+                    <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-soccer.png" alt="" />
+                </div>
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/gradient-pink.jpg)">
+                    <h4 data-swiper-parallax="-30%">54</h4>
+                    <h3 data-swiper-parallax="-15%">WINTER 1020</h3>
+                    <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-tennis.png" alt="" />
+                </div>
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/gradient-gray.jpg)">
+                    <h4 data-swiper-parallax="-30%">52</h4>
+                    <h3 data-swiper-parallax="-15%">AIR MAX 2015</h3>
+                    <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-fashion.png" alt="" />
+                </div>
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/gradient-blue.jpg)">
+                    <h4 data-swiper-parallax="-30%">35</h4>
+                    <h3 data-swiper-parallax="-15%">MINT 1205</h3>
+                    <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-cricket.png" alt="" />
+                </div>
+                <div class="swiper-slide" data-hash="slide1" style="background-image:url(assets/img/exp/gradient-pink.jpg)">
+                    <h4 data-swiper-parallax="-30%">40</h4>
+                    <h3 data-swiper-parallax="-15%">LIFESTYLE 002</h3>
+                    <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-lifestyle.png" alt="" />
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+    </div>
+
+        <a class="windowLink" data-toggle="modal" data-target="#code_window">Code</a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="code_window" tabindex="-1" role="dialog" aria-labelledby="code_window">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Code Window</h4>
+                    </div>
+                <div class="modal-body editor">
+<pre class="brush: php; highlight: [2,11]">
+<!-- Swiper Main -->
+<div class="swiper-container gallery-tp">
+    <div class="swiper-wrapper">
+        <div class="swiper-slde" data-hash="slide1" style="background-image:url(assets/img/exp/bg-y.jpg)">
+            <h4 data-swiper-parallax="-30%">47</h4>
+            <h3 data-swiper-parallax="-15%">AIR MAX 2015</h3>
+            <img src="assets/img/exp/shoe-running.png" alt="" data-swiper-parallax="-50%" />
+        </div>
+        <div class="swiper-slde" data-hash="slide1" style="background-image:url(assets/img/exp/bg-2.jpg)">
+            <h4 data-swiper-parallax="-30%">60</h4>
+            <h3 data-swiper-parallax="-15%">AIR MIN 2016</h3>
+            <img data-swiper-parallax="-50%" src="assets/img/exp/shoe-soccer.png" alt="" />
+        </div>
+    </div>
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+</div>
+<!-- Swiper Thumbs -->
+<div class="swiper-container gallery-txt">
+    <div class="swiper-wrapper">
+        <div class="swiper-slde">Running</div>
+        <div class="swiper-slde">Soccer</div>
+    </div>
+    <div class="swiper-button-next swiper-button-white"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+</div>
+</pre>
+<pre class="brush: js; highlight: [9,11,31, 32]">
+<!-- Swiper Script -->
+<script>
+var galleryTop = new Swiper('.gallery-tp', {
+    loop: true,
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    spaceBetween: 30,
+    pagination: '.swiper-pagination',
+    paginationType: 'fraction',
+    slideToClickedSlide: true,
+    parallax: true,
+    effect: 'coverflow',
+    coverflow: {
+        rotate: 0,
+        stretch: 1,
+        depth: 100,
+        modifier: 1,
+        slideShadows : true
+    }
+});
+
+/* Gallery Thumb */
+var galleryTxt = new Swiper('.gallery-txt', {
+    loop: true,
+    centeredSlides: true,
+    spaceBetween: 5,
+    slidesPerView: 'auto',
+    slideToClickedSlide: true
+});
+
+galleryTop.params.control = galleryTxt;
+galleryTxt.params.control = galleryTop;
+</script>
+</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Initialize Swiper -->
+    <script>
+
+    var galleryTop = new Swiper('.gallery-top', {
+        loop: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: 30,
+        pagination: '.swiper-pagination',
+        paginationType: 'fraction',
+        slideToClickedSlide: true,
+        parallax: true,
+        effect: 'coverflow',
+        coverflow: {
+            rotate: 0,
+            stretch: 1,
+            depth: 100,
+            modifier: 1,
+            slideShadows : true
+        }
+    });
+
+    /* Gallery Thumb */
+    var galleryThumbs = new Swiper('.gallery-text', {
+        loop: true,
+        centeredSlides: true,
+        spaceBetween: 5,
+        slidesPerView: 'auto',
+        slideToClickedSlide: true
+    });
+
+    galleryTop.params.control = galleryThumbs;
+    galleryThumbs.params.control = galleryTop;
+
+    galleryTop.slideTo(6);
+    </script>
+</body>
+
+</html>

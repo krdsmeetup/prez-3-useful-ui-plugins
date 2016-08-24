@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <title>Freewall - Google Images Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel='stylesheet prefetch' href='assets/bootstrap.css'>
+    <link rel='stylesheet prefetch' href='assets/css/style.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css' />
+
+
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shCore.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shAutoloader.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushPhp.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushXml.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushJScript.js"></script>
+        <script type="text/javascript" src="../../js/syntaxhighlighter/shBrushCss.js"></script>
+        <link type="text/css" rel="stylesheet" href="../../js/syntaxhighlighter/shCoreDefault.css"/>
+        <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <style class="cp-pen-styles">
+        html,
+        body {
+            background: #0abbff;
+        }
+        .free-wall {
+            margin: 15px;
+        }
+        .cell {
+            width: 150px;
+            height: 120px;
+        }
+        .cell img {
+            margin: 0px;
+            padding: 0px;
+            display: block;
+            min-height: 100%;
+            object-fit: cover;
+        }
+        h1 {
+            text-align: center;
+            padding: 3% 0;
+            color: #000;
+        }
+        h3 {
+            overflow: hidden;
+        }
+        h3 i {
+            float: right;
+            color: #0abbff;
+        }
+    </style>
+    <script src='assets/jquery-2.1.3.js'></script>
+    <script src='assets/bootstrap.js'></script>
+    <script src='assets/freewall.js'></script>
+</head>
+
+<body>
+    <h1>Freewall - Google Images Layout</h1>
+
+    <div class="container">
+
+        <!-- Free wall -->
+        <div id="freewall" class="free-wall">
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/1.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/2.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/3.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/4.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/5.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/6.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/7.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/8.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/9.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/10.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/11.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/12.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/13.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/14.jpg);"></div>
+		    <div class="cell" style="width: 1px; height: 200px; background-image: url(i/photo/15.jpg);"></div>
+        </div>
+    </div>
+
+    <a class="windowLink" data-toggle="modal" data-target="#code_window">Code</a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="code_window" tabindex="-1" role="dialog" aria-labelledby="code_window">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Code Window</h4>
+                </div>
+                <div class="modal-body editor">
+
+<pre class="brush: js;">
+<script>
+var wall = new Freewall("#freewall");
+wall.reset({
+    selector: '.cell',
+    animate: true,
+    cellW: "auto",
+    cellH: 200,
+    onResize: function() {
+        wall.fitWidth();
+    }
+});
+wall.fitWidth();
+// for scroll bar appear;
+$(window).trigger("resize");
+</script>
+</pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-image: url(i/photo/{index}.jpg)'></div>";
+            var w = 1, html = '', limitItem = 16;
+            for (var i = 0; i < limitItem; ++i) {
+                w = 150 +  200 * Math.random() << 0;
+                html += temp.replace(/\{height\}/g, 200).replace(/\{width\}/g, w).replace("{index}", i + 1);
+            }
+            $("#freewall").html(html);
+
+            var wall = new Freewall("#freewall");
+            wall.reset({
+                selector: '.cell',
+                animate: true,
+                cellW: 20,
+                cellH: 200,
+                onResize: function() {
+                    wall.fitWidth();
+                }
+            });
+            wall.fitWidth();
+            // for scroll bar appear;
+            $(window).trigger("resize");
+        });
+    </script>
+</body>
+
+</html>
